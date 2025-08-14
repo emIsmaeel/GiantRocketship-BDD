@@ -4,17 +4,17 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "npx bddgen; npx playwright test",
-        "headed:test": "npx bddgen; npx playwright test --headed",
-        "html:test": "npx bddgen; npx playwright test --reporter=html",
+        "test": "npx bddgen && npx playwright test",
+        "headed:test": "npx bddgen && npx playwright test --headed",
+        "html:test": "npx bddgen && npx playwright test --reporter=html",
         "show:html:report": "npx playwright show-report",
-        "allure": "npx bddgen; npx playwright test --reporter=allure-playwright",
+        "allure": "npx bddgen && npx playwright test --reporter=allure-playwright",
         "serve:allure": "allure generate allure-results -o allure-report --clean && allure open allure-report",
         "lint": "eslint '**/*.ts'",
         "lint:fix": "eslint '**/*.ts' --fix",
         "format": "prettier --write .",
         "lint-staged": "lint-staged --no-inline",
-        "bdd": "cucumber-js src/features/contactUs.feature --require-module ts-node/register --require src/steps/contactUs.ts --require src/support/**/*.ts"
+        "bdd": "npx bddgen && npx playwright test"
     },
     "lintStaged": {
         "**/*.ts": [
@@ -30,8 +30,8 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "@cucumber/cucumber": "^12.1.0",
-        "@playwright/test": "^1.45.2",
+        "@cucumber/cucumber": "^8.9.1",
+        "@playwright/test": "^1.41.0",
         "@types/node": "^20.14.10",
         "@typescript-eslint/eslint-plugin": "^7.16.1",
         "@typescript-eslint/parser": "^7.16.1",
@@ -45,10 +45,6 @@
         "lint-staged": "^15.2.7",
         "playwright-bdd": "^6.6.0",
         "prettier": "^3.3.3",
-        "ts-node": "^10.9.2",
         "typescript": "^5.9.2"
-    },
-    "dependencies": {
-        "allure": "^0.0.0"
     }
 }
