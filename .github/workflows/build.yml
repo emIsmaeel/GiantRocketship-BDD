@@ -16,13 +16,21 @@ jobs:
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
+        with:
+          node-version: 18
 
       - name: Install dependencies
         run: |
-          npm install
-          npx playwright install
+          npm ci
+          npx playwright install --with-deps
 
-      - name: Run tests on Playwright
+      - name: Generate BDD test files
+        run: npx bddgen
+
+      - name: TypeScript compile check
+        run: npx tsc --noEmit --skipLibCheck
+
+      - name: Run tests with Allure
         run: npm run allure
 
       - name: Get Allure history

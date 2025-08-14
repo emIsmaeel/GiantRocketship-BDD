@@ -13,7 +13,8 @@
         "lint": "eslint '**/*.ts'",
         "lint:fix": "eslint '**/*.ts' --fix",
         "format": "prettier --write .",
-        "lint-staged": "lint-staged --no-inline"
+        "lint-staged": "lint-staged --no-inline",
+        "bdd": "cucumber-js src/features/contactUs.feature --require-module ts-node/register --require src/steps/contactUs.ts --require src/support/**/*.ts"
     },
     "lintStaged": {
         "**/*.ts": [
@@ -29,7 +30,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "@cucumber/cucumber": "^10.8.0",
+        "@cucumber/cucumber": "^10.9.0",
         "@playwright/test": "^1.45.2",
         "@types/node": "^20.14.10",
         "@typescript-eslint/eslint-plugin": "^7.16.1",
@@ -43,7 +44,9 @@
         "husky": "^9.1.1",
         "lint-staged": "^15.2.7",
         "playwright-bdd": "^6.6.0",
-        "prettier": "^3.3.3"
+        "prettier": "^3.3.3",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.9.2"
     },
     "dependencies": {
         "allure": "^0.0.0"

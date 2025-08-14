@@ -1,53 +1,52 @@
 import { BasePage } from '../basePage';
-import { FrameLocator, Locator, Page } from '@playwright/test';
-import { IContactForm } from './contactForm.in';
+import { Locator, Page } from '@playwright/test';
 
-export class ContactForm extends BasePage implements IContactForm {
-    private form: FrameLocator;
-    private readonly formTitle: string = "[class='frmTitle']";
-    private readonly firstName: string = "[elname='First']";
-    private readonly lastName: string = "[elname='Last']";
-    private readonly email: string = "[name='Email']";
-    private readonly comment: string = "[name='MultiLine']";
-    private readonly submitBtn: string = "button[elname='submit']";
-    private readonly nameFieldError: string = "[id='error-Name']";
-    private readonly emailFieldError: string = "[id='error-Email']";
-    private readonly commentFieldError: string = "[id='error-MultiLine']";
+export class ContactForm extends BasePage{
+    private readonly firstName: string = '[id^="firstname"]';
+    private readonly lastName: string = '[id^="lastname"]';
+    private readonly email: string = "[id^='email']";
+    private readonly comment: string = "[id^='contact_notes']";
+    private readonly submitBtn: string = 'input[value="Submit"]';
+    private readonly firstNameFieldError: string = '[class^="hs_firstname"]';
+    private readonly lastNameFieldError: string = '[class^="hs_lastname"]';
+    private readonly emailFieldError: string = '[class^="hs_email"]';
 
-    constructor(page: Page, formFrame: FrameLocator) {
+    constructor(page: Page) {
         super(page);
-        this.form = formFrame;
     }
 
     async addFirstName(firstName: string): Promise<void> {
-        await this.form.locator(this.firstName).first().fill(firstName);
+        await this.page.locator(this.firstName).first().fill(firstName);
     }
 
     async addLastName(lastName: string): Promise<void> {
-        await this.form.locator(this.lastName).first().fill(lastName);
+        await this.page.locator(this.lastName).first().fill(lastName);
     }
 
     async addEmail(email: string): Promise<void> {
-        await this.form.locator(this.email).first().fill(email);
+        await this.page.locator(this.email).first().fill(email);
     }
 
     async addComment(comment: string): Promise<void> {
-        await this.form.locator(this.comment).first().fill(comment);
+        await this.page.locator(this.comment).first().fill(comment);
     }
 
-    async nameError(): Promise<Locator> {
-        return this.form.locator(this.nameFieldError);
+    async firstNameError(error:string): Promise<Locator> {
+        return this.page.locator(this.firstNameFieldError)
+        .filter({ hasText: `${error}` });
     }
 
-    async emailError(): Promise<Locator> {
-        return this.form.locator(this.emailFieldError);
+    async lastNameError(error:string): Promise<Locator> {
+        return this.page.locator(this.lastNameFieldError)
+        .filter({ hasText: `${error}` });
     }
 
-    async commentError(): Promise<Locator> {
-        return this.form.locator(this.commentFieldError);
+    async emailError(error:string): Promise<Locator> {
+        return this.page.locator(this.emailFieldError)
+        .filter({ hasText: `${error}` });
     }
 
     async submitForm(): Promise<void> {
-        await this.form.locator(this.submitBtn).first().click();
+        await this.page.locator(this.submitBtn).first().click();
     }
 }

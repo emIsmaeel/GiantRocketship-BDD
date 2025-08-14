@@ -1,8 +1,7 @@
 export const formError = {
-    error: 'Enter a value for this field.',
+    error: "Please complete this required field.",
 };
 
 export const successTestData = {
-    thankYou: 'Thank you!',
-    successMessage: 'Your details have been submitted.',
+    successMessage: "Thank you for your message! You'll hear from us soon.",
 };

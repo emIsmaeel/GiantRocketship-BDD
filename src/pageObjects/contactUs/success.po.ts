@@ -3,7 +3,7 @@ import { Locator } from '@playwright/test';
 
 export class SuccessPage extends BasePage {
     private readonly pageTitle = "h1[class*='heading-title']";
-    private readonly message = 'div > p';
+    private readonly message = '[id*="target_form"] div';
 
     async waitForFormSubmit(): Promise<void> {
         await this.page.locator(this.pageTitle).waitFor({ timeout: 30000 });
