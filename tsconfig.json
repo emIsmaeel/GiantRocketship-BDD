@@ -4,7 +4,7 @@
       "module": "commonjs",
       "strict": true,
       "esModuleInterop": true,
-      "skipLibCheck": false,
+      "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
       "moduleResolution": "node",
       "resolveJsonModule": true,
